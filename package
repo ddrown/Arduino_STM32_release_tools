@@ -22,7 +22,7 @@
 
 # configurable settings
 #######################
-my $base_url = "http://dan.drown.org/arduino/";
+my $base_url = "http://dan.drown.org/stm32duino/";
 my(@target_list) = ("STM32F1", "STM32F3", "STM32F4");
 my(@host_list) = ("win", "linux", "linux64", "macosx");
 my $release_tools_dir = "../Arduino_STM32_release_tools";
