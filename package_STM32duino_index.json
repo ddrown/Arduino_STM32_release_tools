@@ -1,0 +1,89 @@
+{
+	"packages":
+	{
+		"name":"stm32duino",
+		"maintainer":"stm32duino",
+		"websiteURL":"http://www.stm32duino.com/",
+		"email":"?",
+		"help":{ "online":"http://www.stm32duino.com/" },
+		"platforms": 
+			[
+				{
+					"name": "STM32F1xx boards",
+					"architecture": "stm32f1xx",
+					"version": "1.0.0",
+					"category": "STM32",
+					"url": "http://dan.drown.org/arduino/STM32F1-be136b1cc95a2e559f91c5532f6f42232b7a35f8.zip",
+					"archiveFileName": "STM32F1-be136b1cc95a2e559f91c5532f6f42232b7a35f8.zip",
+					"checksum": "SHA-256:d1ad25c609e25f3653bf68571f4c5a718470526a02a70c58b3d9c3de0b7c1e65",
+					"size": "10626687",
+					"boards": 
+						[
+							{"name": "Maple Mini"},
+							{"name": "Maple (Rev 3)"},
+							{"name": "Maple (RET6)"},
+							{"name": "Microduino Core STM32 to Flash"},
+							{"name": "STM Nucleo F103RB (STLink)"},
+							{"name": "Generic STM32F103C series"},
+							{"name": "Generic STM32F103R series"},
+							{"name": "Generic STM32F103T series"},
+							{"name": "Generic STM32F103V series"},
+							{"name": "Generic STM32F103Z series"}
+						],
+					"toolsDependencies": 
+						[
+							{
+							  "packager": "stm32duino",
+							  "version": "1.0.0",
+							  "name": "stm32tools"
+							}
+
+						]
+				}
+			],
+		"tools":
+			[
+			        {
+			          "version": "1.0.0",
+			          "name": "stm32tools",
+			          "systems": [
+			            {
+			              "url": "http://dan.drown.org/arduino/tools-33333857d847a45381b50b0d4af7735a25779bd6.zip",
+			              "checksum": "SHA-256:e921cfc572b5e48708c467b6e5dd9ad6a9f59171ea036f0fb5ca7020d05e45bb",
+			              "host": "i686-mingw32",
+			              "archiveFileName": "tools-33333857d847a45381b50b0d4af7735a25779bd6.zip",
+			              "size": "7935478"
+			            },
+			            {
+			              "url": "http://dan.drown.org/arduino/tools-33333857d847a45381b50b0d4af7735a25779bd6.zip",
+			              "checksum": "SHA-256:e921cfc572b5e48708c467b6e5dd9ad6a9f59171ea036f0fb5ca7020d05e45bb",
+			              "host": "x86_64-apple-darwin",
+			              "archiveFileName": "tools-33333857d847a45381b50b0d4af7735a25779bd6.zip",
+			              "size": "7935478"
+			            },
+			            {
+			              "url": "http://dan.drown.org/arduino/tools-33333857d847a45381b50b0d4af7735a25779bd6.zip",
+			              "checksum": "SHA-256:e921cfc572b5e48708c467b6e5dd9ad6a9f59171ea036f0fb5ca7020d05e45bb",
+			              "host": "i386-apple-darwin",
+			              "archiveFileName": "tools-33333857d847a45381b50b0d4af7735a25779bd6.zip",
+			              "size": "7935478"
+			            },
+			            {
+			              "url": "http://dan.drown.org/arduino/tools-33333857d847a45381b50b0d4af7735a25779bd6.zip",
+			              "checksum": "SHA-256:e921cfc572b5e48708c467b6e5dd9ad6a9f59171ea036f0fb5ca7020d05e45bb",
+			              "host": "x86_64-pc-linux-gnu",
+			              "archiveFileName": "tools-33333857d847a45381b50b0d4af7735a25779bd6.zip",
+			              "size": "7935478"
+			            },
+			            {
+			              "url": "http://dan.drown.org/arduino/tools-33333857d847a45381b50b0d4af7735a25779bd6.zip",
+			              "checksum": "SHA-256:e921cfc572b5e48708c467b6e5dd9ad6a9f59171ea036f0fb5ca7020d05e45bb",
+			              "host": "i686-pc-linux-gnu",
+			              "archiveFileName": "tools-33333857d847a45381b50b0d4af7735a25779bd6.zip",
+			              "size": "7935478"
+			            }
+			          ]
+			        }
+			]
+	}
+}

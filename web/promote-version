@@ -1,0 +1,80 @@
+#!/usr/bin/perl -w
+
+# this takes one argument: --version=[version]
+# it will take that version's data and copy it from testing.json to package_STM32duino_index.json
+# it keeps up to 100 backup copies of package_STM32duino_index.json as .0, .1, .2, etc
+#
+# packages needed to run under cygwin/Windows:
+#   perl, perl_base, perl-JSON-XS
+# packages needed to run under Fedora:
+#   perl, perl-JSON-XS, perl-Clone, perl-Getopt-Long
+# packages needed to run under Debian/Ubuntu:
+#   perl, perl-modules, libjson-xs-perl
+
+use strict;
+use JSON::XS qw(encode_json decode_json);
+use Getopt::Long;
+
+sub read_json {
+  my($filename) = @_;
+
+  open(JSON, "<", $filename) or die("error opening $filename: $!");
+  my($data) = decode_json(join("",<JSON>));
+  close(JSON);
+
+  return $data;
+}
+
+sub write_json {
+  my($data,$filename) = @_;
+
+  my $json = JSON::XS->new->pretty;
+
+  open(JSON, ">", "$filename.tmp") or die("unable to write temporary file: $!");
+  print JSON $json->encode($data)."\n";
+  close(JSON);
+
+  rename("$filename.tmp",$filename);
+}
+
+my($version);
+GetOptions ("version=s" => \$version)
+or die("Error in command line arguments\n");
+
+if(not defined($version)) {
+  die("I need a --version= to copy from testing.json to package_STM32duino_index.json\n");
+}
+
+my($testing_data) = read_json("testing.json");
+my($normal_data) = read_json("package_STM32duino_index.json");
+
+my($found_version) = 0;
+for(my $i = 0; $i < @{$testing_data->{packages}{platforms}}; $i++) {
+  if($testing_data->{packages}{platforms}[$i]{version} eq $version) {
+    push(@{$normal_data->{packages}{platforms}}, $testing_data->{packages}{platforms}[$i]);
+    $found_version = 1;
+  }
+}
+if(not $found_version) {
+  die("version $version not found in testing's platform packages\n");
+}
+
+$found_version = 0;
+for(my $i = 0; $i < @{$testing_data->{packages}{tools}}; $i++) {
+  if($testing_data->{packages}{tools}[$i]{name} eq "stm32tools" and $testing_data->{packages}{tools}[$i]{version} eq $version) {
+    push(@{$normal_data->{packages}{tools}}, $testing_data->{packages}{tools}[$i]);
+    $found_version = 1;
+    last;
+  }
+}
+if(not $found_version) {
+  die("version $version not found in testing's tools packages\n");
+}
+# keep backups
+for(my $i = 100; $i > 0; $i--) {
+  if(-f "package_STM32duino_index.json.".($i-1)) {
+    rename("package_STM32duino_index.json.".($i-1), "package_STM32duino_index.json.$i");
+  }
+}
+system("cp package_STM32duino_index.json package_STM32duino_index.json.0");
+write_json($normal_data, "package_STM32duino_index.json");
