@@ -1,8 +1,8 @@
 #!/usr/bin/perl -w
 
-# Takes no arguments, operates on the file web/testing.json
-# The first run, you will need a copy of web/testing.json that already has the target
-# platforms and tools
+# Takes no arguments, operates on the file web/package_STM32duino_index.json
+# The first run, you will need a copy of web/package_STM32duino_index.json that
+# already has the target platforms and tools (see that file in this directory)
 #
 # This tool creates the zip files for the various targets (STM32F1, STM32F3, STM32F4)
 # And also creates the zip or tar.gz files for the various hosts (win, linux, macosx)
@@ -10,9 +10,12 @@
 # After it is done, copy the files in web/ to your webserver's directory in $base_url.  
 # The rsync tool can make this easier
 #
+# This tool expects to be in the dir named Arduino_STM32_release_tools and expects
+# stm32duino to be in ../Arduino_STM32
+#
 # packages needed to run under cygwin/Windows:
 #   zip, coreutils, tar, perl, perl_base, perl-JSON-XS, perl-Clone
-# packages needed to run under Fedora:
+# packages needed to run under Fedora/CentOS:
 #   zip, coreutils, tar, perl, perl-JSON-XS, perl-Clone
 # packages needed to run under Debian/Ubuntu:
 #   zip, coreutils, tar, perl, perl-modules, libjson-xs-perl, libclone-perl
@@ -22,8 +25,10 @@
 my $base_url = "http://dan.drown.org/arduino/";
 my(@target_list) = ("STM32F1", "STM32F3", "STM32F4");
 my(@host_list) = ("win", "linux", "linux64", "macosx");
-my $json_file = "web/testing.json";
-my $destination_dir = "web/";
+my $release_tools_dir = "../Arduino_STM32_release_tools";
+my $stm32duino_dir = "../Arduino_STM32";
+my $destination_dir = "$release_tools_dir/web/";
+my $json_file = "$destination_dir/package_STM32duino_index.json";
 
 # libraries
 #######################
@@ -31,9 +36,27 @@ use strict;
 use File::stat;
 use JSON::XS qw(encode_json decode_json);
 use Clone qw(clone);
+use POSIX qw(strftime);
 
 # code starts here
 #######################
+sub sha256sum {
+  my($file) = @_;
+
+  my $sha256 = `sha256sum $file`;
+  $sha256 =~ s/ .*//s;
+  return $sha256;
+}
+
+sub filesize {
+  my($filename) = @_;
+
+  my $file_stats = stat($filename);
+
+  return $file_stats->size();
+}
+
+# directory relative to $stm32duino_dir
 sub zip {
   my($directory, $version) = @_;
 
@@ -44,15 +67,15 @@ sub zip {
 
   unlink($zipfile);
   system("zip -r $zipfile $directory");
-  my $sha256 = `sha256sum $zipfile`;
-  $sha256 =~ s/ .*//s;
-  my $filestats = stat($zipfile);
+  my $sha256 = sha256sum($zipfile);
+  my $filesize = filesize($zipfile);
 
   $zipfile =~ s@$destination_dir@@;
 
-  return { filename => $zipfile, sha256 => $sha256, size => $filestats->size() };
+  return { filename => $zipfile, sha256 => $sha256, size => $filesize };
 }
 
+# directory relative to $stm32duino_dir
 sub tar_gz {
   my($directory, $version) = @_;
 
@@ -62,14 +85,13 @@ sub tar_gz {
   my $tarfile = $destination_dir."$base_filename-$version.tar.gz";
 
   unlink($tarfile);
-  system("tar zcf $tarfile --group=stm32 --owner=stm32 $directory");
-  my $sha256 = `sha256sum $tarfile`;
-  $sha256 =~ s/ .*//s;
-  my $filestats = stat($tarfile);
+  system("tar zcf $tarfile --group=0 --owner=0 $directory");
+  my $sha256 = sha256sum($tarfile);
+  my $filesize = filesize($tarfile);
 
   $tarfile =~ s@$destination_dir@@;
 
-  return { filename => $tarfile, sha256 => $sha256, size => $filestats->size() };
+  return { filename => $tarfile, sha256 => $sha256, size => $filesize };
 }
 
 sub read_json {
@@ -159,11 +181,9 @@ sub prepare_tools_pkg {
 }
 
 sub new_version {
-  my($old_version) = @_;
-
-  my($major,$minor,$release) = split(/\./,$old_version,3);
-  $release++;
-  return "$major.$minor.$release";
+  my $ymd = POSIX::strftime("%Y.%m.%d", localtime());
+  $ymd =~ s/\.0/./g; # Arduino IDE does not like leading 0's in version numbers
+  return $ymd;
 }
 
 sub last_target_platforms {
@@ -180,10 +200,12 @@ sub last_target_platforms {
 }
 
 sub main {
+  chdir($stm32duino_dir) or die("directory $stm32duino_dir not found\n");
+
   my($testing_pkgs) = read_json($json_file);
   my $lastversion = $testing_pkgs->{packages}{platforms}[-1]{version};
   my($last_target_platforms) = last_target_platforms($testing_pkgs, $lastversion);
-  my $version = new_version($lastversion);
+  my $version = new_version();
 
   my(%targets);
   foreach my $target (@target_list) {
