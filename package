@@ -77,10 +77,12 @@ sub zip {
 
 # directory relative to $stm32duino_dir
 sub tar_gz {
-  my($directory, $version) = @_;
+  my($directory, $version, $base_filename) = @_;
 
-  my $base_filename = $directory;
-  $base_filename =~ s!/!_!g;
+  if(not defined($base_filename)) {
+    $base_filename = $directory;
+    $base_filename =~ s!/!_!g;
+  }
 
   my $tarfile = $destination_dir."$base_filename-$version.tar.gz";
 
@@ -217,6 +219,12 @@ sub main {
     my($tool_zip);
     if($host eq "win") {
       $tool_zip = zip("tools/$host",$version);
+    } elsif($host eq "linux64") {
+      rename("tools/linux","tools/linux.real");
+      rename("tools/linux64","tools/linux");
+      $tool_zip = tar_gz("tools/linux",$version,"tools_linux64");
+      rename("tools/linux","tools/linux64");
+      rename("tools/linux.real","tools/linux");
     } else {
       $tool_zip = tar_gz("tools/$host",$version);
     }

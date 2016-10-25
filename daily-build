@@ -1,0 +1,15 @@
+#!/bin/sh
+
+cd /home/abob/git/Arduino_STM32
+git checkout STM32F3/platform.txt STM32F4/platform.txt STM32F1/platform.txt
+git pull
+CURVER=`git rev-parse HEAD`
+LASTBUILD=`cat .gitlastbuild`
+
+if [ "$CURVER" != "$LASTBUILD" ]; then
+  ../Arduino_STM32_release_tools/patch-runtime-tools
+  echo $CURVER != $LASTBUILD building new package
+  echo $CURVER >.gitlastbuild
+  cd ../Arduino_STM32_release_tools
+  ./package
+fi
