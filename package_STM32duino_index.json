@@ -1,174 +1,176 @@
 {
-   "packages" : {
-      "maintainer" : "stm32duino",
-      "email" : "?",
-      "platforms" : [
-         {
-            "version" : "2016.9.20",
-            "name" : "STM32F4xx boards",
-            "boards" : [
-               {
-                  "name" : "STM32 Discovery F407"
-               },
-               {
-                  "name" : "STM32F4Stamp F405"
-               },
-               {
-                  "name" : "Netduino2 F405"
-               }
-            ],
-            "size" : 505382,
-            "checksum" : "SHA-256:5a3dfbc57562b781d06b1fa6f02df6e4af542338db919c1f7eb2fca6d9d3a4e2",
-            "architecture" : "STM32F4",
-            "toolsDependencies" : [
-               {
-                  "version" : "2016.9.20",
-                  "name" : "stm32tools",
-                  "packager" : "stm32duino"
-               },
-               {
-                  "version" : "4.8.3-2014q1",
-                  "name" : "arm-none-eabi-gcc",
-                  "packager" : "arduino"
-               }
-            ],
-            "url" : "http://dan.drown.org/stm32duino/STM32F4-2016.9.20.zip",
-            "category" : "STM32",
-            "archiveFileName" : "STM32F4-2016.9.20.zip"
+   "packages" : [
+      {
+         "maintainer" : "stm32duino",
+         "email" : "?",
+         "platforms" : [
+            {
+               "version" : "2016.9.20",
+               "name" : "STM32F4xx boards",
+               "boards" : [
+                  {
+                     "name" : "STM32 Discovery F407"
+                  },
+                  {
+                     "name" : "STM32F4Stamp F405"
+                  },
+                  {
+                     "name" : "Netduino2 F405"
+                  }
+               ],
+               "size" : 505382,
+               "checksum" : "SHA-256:5a3dfbc57562b781d06b1fa6f02df6e4af542338db919c1f7eb2fca6d9d3a4e2",
+               "architecture" : "STM32F4",
+               "toolsDependencies" : [
+                  {
+                     "version" : "2016.9.20",
+                     "name" : "stm32tools",
+                     "packager" : "stm32duino"
+                  },
+                  {
+                     "version" : "4.8.3-2014q1",
+                     "name" : "arm-none-eabi-gcc",
+                     "packager" : "arduino"
+                  }
+               ],
+               "url" : "http://dan.drown.org/stm32duino/STM32F4-2016.9.20.zip",
+               "category" : "STM32",
+               "archiveFileName" : "STM32F4-2016.9.20.zip"
+            },
+            {
+               "version" : "2016.9.20",
+               "name" : "STM32F3xx boards",
+               "boards" : [
+                  {
+                     "name" : "STM32F3Discovery"
+                  }
+               ],
+               "size" : 387055,
+               "architecture" : "STM32F3",
+               "checksum" : "SHA-256:b100b299316adfad11b938ce00a4e4cd54966152dbf9896be344a08f983a1fc3",
+               "toolsDependencies" : [
+                  {
+                     "version" : "2016.9.20",
+                     "name" : "stm32tools",
+                     "packager" : "stm32duino"
+                  },
+                  {
+                     "version" : "4.8.3-2014q1",
+                     "name" : "arm-none-eabi-gcc",
+                     "packager" : "arduino"
+                  }
+               ],
+               "url" : "http://dan.drown.org/stm32duino/STM32F3-2016.9.20.zip",
+               "category" : "STM32",
+               "archiveFileName" : "STM32F3-2016.9.20.zip"
+            },
+            {
+               "version" : "2016.9.20",
+               "name" : "STM32F1xx/GD32F1xx boards",
+               "boards" : [
+                  {
+                     "name" : "Maple Mini"
+                  },
+                  {
+                     "name" : "Maple (Rev 3)"
+                  },
+                  {
+                     "name" : "Maple (RET6)"
+                  },
+                  {
+                     "name" : "Microduino Core STM32 to Flash"
+                  },
+                  {
+                     "name" : "STM Nucleo F103RB (STLink)"
+                  },
+                  {
+                     "name" : "Generic STM32F103C series"
+                  },
+                  {
+                     "name" : "Generic STM32F103R series"
+                  },
+                  {
+                     "name" : "Generic STM32F103T series"
+                  },
+                  {
+                     "name" : "Generic STM32F103V series"
+                  },
+                  {
+                     "name" : "Generic STM32F103Z series"
+                  },
+                  {
+                     "name" : "Generic GD32F103C series"
+                  }
+               ],
+               "size" : 9933256,
+               "architecture" : "STM32F1",
+               "checksum" : "SHA-256:249b60a6b561b1a80536d2adc5937a1d506a27c09382897b2fc29f9f3c7ad927",
+               "toolsDependencies" : [
+                  {
+                     "version" : "2016.9.20",
+                     "name" : "stm32tools",
+                     "packager" : "stm32duino"
+                  },
+                  {
+                     "version" : "4.8.3-2014q1",
+                     "name" : "arm-none-eabi-gcc",
+                     "packager" : "arduino"
+                  }
+               ],
+               "url" : "http://dan.drown.org/stm32duino/STM32F1-2016.9.20.zip",
+               "category" : "STM32",
+               "archiveFileName" : "STM32F1-2016.9.20.zip"
+            }
+         ],
+         "tools" : [
+            {
+               "systems" : [
+                  {
+                     "checksum" : "SHA-256:2aba9f4046c8d86e8b9fcf873a0fc869bac93a4f5397690baa4295869927fdc0",
+                     "url" : "http://dan.drown.org/stm32duino/tools_win-2016.9.20.zip",
+                     "archiveFileName" : "tools_win-2016.9.20.zip",
+                     "size" : 6429313,
+                     "host" : "i686-mingw32"
+                  },
+                  {
+                     "checksum" : "SHA-256:7dbe392d8cb83d34bc7bb8275102c645df7d78db64f01d2164fecdb825bc2963",
+                     "url" : "http://dan.drown.org/stm32duino/tools_macosx-2016.9.20.tar.gz",
+                     "archiveFileName" : "tools_macosx-2016.9.20.tar.gz",
+                     "host" : "x86_64-apple-darwin",
+                     "size" : 631618
+                  },
+                  {
+                     "checksum" : "SHA-256:7dbe392d8cb83d34bc7bb8275102c645df7d78db64f01d2164fecdb825bc2963",
+                     "url" : "http://dan.drown.org/stm32duino/tools_macosx-2016.9.20.tar.gz",
+                     "archiveFileName" : "tools_macosx-2016.9.20.tar.gz",
+                     "size" : 631618,
+                     "host" : "i386-apple-darwin"
+                  },
+                  {
+                     "checksum" : "SHA-256:31cd37a753641fcc48f865d9d7b85d4f672a3f4f3d8dceac4af44b393de07920",
+                     "url" : "http://dan.drown.org/stm32duino/tools_linux64-2016.9.20.tar.gz",
+                     "archiveFileName" : "tools_linux64-2016.9.20.tar.gz",
+                     "host" : "x86_64-pc-linux-gnu",
+                     "size" : 951246
+                  },
+                  {
+                     "checksum" : "SHA-256:cac07d5b2f5b9d49ad67d0b33729cc2a28d24421a9a7a6b985f3d368c38e1d8a",
+                     "url" : "http://dan.drown.org/stm32duino/tools_linux-2016.9.20.tar.gz",
+                     "archiveFileName" : "tools_linux-2016.9.20.tar.gz",
+                     "size" : 898500,
+                     "host" : "i686-pc-linux-gnu"
+                  }
+               ],
+               "version" : "2016.9.20",
+               "name" : "stm32tools"
+            }
+         ],
+         "help" : {
+            "online" : "http://www.stm32duino.com/"
          },
-         {
-            "version" : "2016.9.20",
-            "name" : "STM32F3xx boards",
-            "boards" : [
-               {
-                  "name" : "STM32F3Discovery"
-               }
-            ],
-            "size" : 387055,
-            "architecture" : "STM32F3",
-            "checksum" : "SHA-256:b100b299316adfad11b938ce00a4e4cd54966152dbf9896be344a08f983a1fc3",
-            "toolsDependencies" : [
-               {
-                  "version" : "2016.9.20",
-                  "name" : "stm32tools",
-                  "packager" : "stm32duino"
-               },
-               {
-                  "version" : "4.8.3-2014q1",
-                  "name" : "arm-none-eabi-gcc",
-                  "packager" : "arduino"
-               }
-            ],
-            "url" : "http://dan.drown.org/stm32duino/STM32F3-2016.9.20.zip",
-            "category" : "STM32",
-            "archiveFileName" : "STM32F3-2016.9.20.zip"
-         },
-         {
-            "version" : "2016.9.20",
-            "name" : "STM32F1xx/GD32F1xx boards",
-            "boards" : [
-               {
-                  "name" : "Maple Mini"
-               },
-               {
-                  "name" : "Maple (Rev 3)"
-               },
-               {
-                  "name" : "Maple (RET6)"
-               },
-               {
-                  "name" : "Microduino Core STM32 to Flash"
-               },
-               {
-                  "name" : "STM Nucleo F103RB (STLink)"
-               },
-               {
-                  "name" : "Generic STM32F103C series"
-               },
-               {
-                  "name" : "Generic STM32F103R series"
-               },
-               {
-                  "name" : "Generic STM32F103T series"
-               },
-               {
-                  "name" : "Generic STM32F103V series"
-               },
-               {
-                  "name" : "Generic STM32F103Z series"
-               },
-               {
-                  "name" : "Generic GD32F103C series"
-               }
-            ],
-            "size" : 9933256,
-            "architecture" : "STM32F1",
-            "checksum" : "SHA-256:249b60a6b561b1a80536d2adc5937a1d506a27c09382897b2fc29f9f3c7ad927",
-            "toolsDependencies" : [
-               {
-                  "version" : "2016.9.20",
-                  "name" : "stm32tools",
-                  "packager" : "stm32duino"
-               },
-               {
-                  "version" : "4.8.3-2014q1",
-                  "name" : "arm-none-eabi-gcc",
-                  "packager" : "arduino"
-               }
-            ],
-            "url" : "http://dan.drown.org/stm32duino/STM32F1-2016.9.20.zip",
-            "category" : "STM32",
-            "archiveFileName" : "STM32F1-2016.9.20.zip"
-         }
-      ],
-      "tools" : [
-         {
-            "systems" : [
-               {
-                  "checksum" : "SHA-256:2aba9f4046c8d86e8b9fcf873a0fc869bac93a4f5397690baa4295869927fdc0",
-                  "url" : "http://dan.drown.org/stm32duino/tools_win-2016.9.20.zip",
-                  "archiveFileName" : "tools_win-2016.9.20.zip",
-                  "size" : 6429313,
-                  "host" : "i686-mingw32"
-               },
-               {
-                  "checksum" : "SHA-256:7dbe392d8cb83d34bc7bb8275102c645df7d78db64f01d2164fecdb825bc2963",
-                  "url" : "http://dan.drown.org/stm32duino/tools_macosx-2016.9.20.tar.gz",
-                  "archiveFileName" : "tools_macosx-2016.9.20.tar.gz",
-                  "host" : "x86_64-apple-darwin",
-                  "size" : 631618
-               },
-               {
-                  "checksum" : "SHA-256:7dbe392d8cb83d34bc7bb8275102c645df7d78db64f01d2164fecdb825bc2963",
-                  "url" : "http://dan.drown.org/stm32duino/tools_macosx-2016.9.20.tar.gz",
-                  "archiveFileName" : "tools_macosx-2016.9.20.tar.gz",
-                  "size" : 631618,
-                  "host" : "i386-apple-darwin"
-               },
-               {
-                  "checksum" : "SHA-256:31cd37a753641fcc48f865d9d7b85d4f672a3f4f3d8dceac4af44b393de07920",
-                  "url" : "http://dan.drown.org/stm32duino/tools_linux64-2016.9.20.tar.gz",
-                  "archiveFileName" : "tools_linux64-2016.9.20.tar.gz",
-                  "host" : "x86_64-pc-linux-gnu",
-                  "size" : 951246
-               },
-               {
-                  "checksum" : "SHA-256:cac07d5b2f5b9d49ad67d0b33729cc2a28d24421a9a7a6b985f3d368c38e1d8a",
-                  "url" : "http://dan.drown.org/stm32duino/tools_linux-2016.9.20.tar.gz",
-                  "archiveFileName" : "tools_linux-2016.9.20.tar.gz",
-                  "size" : 898500,
-                  "host" : "i686-pc-linux-gnu"
-               }
-            ],
-            "version" : "2016.9.20",
-            "name" : "stm32tools"
-         }
-      ],
-      "help" : {
-         "online" : "http://www.stm32duino.com/"
-      },
-      "websiteURL" : "http://www.stm32duino.com/",
-      "name" : "stm32duino"
-   }
+         "websiteURL" : "http://www.stm32duino.com/",
+         "name" : "stm32duino"
+      }
+   ]
 }
 

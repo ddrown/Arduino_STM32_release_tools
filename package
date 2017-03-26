@@ -192,7 +192,7 @@ sub last_target_platforms {
   my($testing_pkgs,$version_number) = @_;
 
   my(%target_platforms);
-  foreach my $platform (@{$testing_pkgs->{packages}{platforms}}) {
+  foreach my $platform (@{$testing_pkgs->{packages}[0]{platforms}}) {
     if($platform->{version} eq $version_number and $platform->{category} eq "STM32") {
       $target_platforms{$platform->{architecture}} = $platform;
     }
@@ -205,7 +205,7 @@ sub main {
   chdir($stm32duino_dir) or die("directory $stm32duino_dir not found\n");
 
   my($testing_pkgs) = read_json($json_file);
-  my $lastversion = $testing_pkgs->{packages}{platforms}[-1]{version};
+  my $lastversion = $testing_pkgs->{packages}[0]{platforms}[-1]{version};
   my($last_target_platforms) = last_target_platforms($testing_pkgs, $lastversion);
   my $version = new_version();
 
@@ -232,10 +232,10 @@ sub main {
   }
 
   my($new_version) = prepare_platform_pkg($last_target_platforms, \%targets, $version);
-  my($new_tools) = prepare_tools_pkg($lastversion, $version, $testing_pkgs->{packages}{tools}, \%tools);
+  my($new_tools) = prepare_tools_pkg($lastversion, $version, $testing_pkgs->{packages}[0]{tools}, \%tools);
 
-  push(@{$testing_pkgs->{packages}{platforms}}, @$new_version);
-  push(@{$testing_pkgs->{packages}{tools}}, $new_tools);
+  push(@{$testing_pkgs->{packages}[0]{platforms}}, @$new_version);
+  push(@{$testing_pkgs->{packages}[0]{tools}}, $new_tools);
 
   write_json($testing_pkgs,$json_file);
 }
