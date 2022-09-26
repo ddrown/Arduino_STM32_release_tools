@@ -4,7 +4,7 @@
 # The first run, you will need a copy of web/package_STM32duino_index.json that
 # already has the target platforms and tools (see that file in this directory)
 #
-# This tool creates the zip files for the various targets (STM32F1, STM32F3, STM32F4)
+# This tool creates the zip files for the various targets (STM32F1, STM32F4)
 # And also creates the zip or tar.gz files for the various hosts (win, linux, macosx)
 #
 # After it is done, copy the files in web/ to your webserver's directory in $base_url.  
@@ -23,7 +23,7 @@
 # configurable settings
 #######################
 my $base_url = "http://dan.drown.org/stm32duino/";
-my(@target_list) = ("STM32F1", "STM32F3", "STM32F4");
+my(@target_list) = ("STM32F1", "STM32F4");
 my(@host_list) = ("win", "linux", "linux64", "macosx");
 my $release_tools_dir = "../Arduino_STM32_release_tools";
 my $stm32duino_dir = "../Arduino_STM32";

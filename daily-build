@@ -1,7 +1,7 @@
 #!/bin/sh
 
 cd /home/abob/git/Arduino_STM32
-git checkout STM32F3/platform.txt STM32F4/platform.txt STM32F1/platform.txt
+git checkout STM32F4/platform.txt STM32F1/platform.txt
 git pull
 CURVER=`git rev-parse HEAD`
 LASTBUILD=`cat .gitlastbuild`

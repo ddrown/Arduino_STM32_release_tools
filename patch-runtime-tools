@@ -1,5 +1,5 @@
 #!/bin/sh
 
-for i in ./STM32F3/platform.txt ./STM32F4/platform.txt ./STM32F1/platform.txt; do
+for i in ./STM32F4/platform.txt ./STM32F1/platform.txt; do
   sed -i -e 's!^\(tools\..*\)={runtime\.hardware\.path}/tools/!\1={runtime.tools.stm32tools.path}/!' -e 's!^\(tools\..*\)/linux64!\1/linux!'  $i
 done
