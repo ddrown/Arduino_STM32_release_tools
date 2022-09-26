@@ -66,7 +66,7 @@ sub zip {
   my $zipfile = $destination_dir."$base_filename-$version.zip";
 
   unlink($zipfile);
-  system("zip -r $zipfile $directory");
+  system("zip -qr $zipfile $directory");
   my $sha256 = sha256sum($zipfile);
   my $filesize = filesize($zipfile);
 
